@@ -1,0 +1,35 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "characters": "Charaktere",
+    "episodes": "Episoden",
+    "locations": "Orte"
+  },
+  "characters": {
+    "title": "Rick und Morty Charaktere",
+    "loading": "Charaktere werden geladen...",
+    "error": "Fehler beim Laden der Charaktere",
+    "status": "Status",
+    "species": "Spezies",
+    "gender": "Geschlecht",
+    "origin": "Herkunft",
+    "location": "Standort",
+    "episodes": "Episoden"
+  },
+  "common": {
+    "search": "Suchen",
+    "filter": "Filter",
+    "sort": "Sortieren",
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "retry": "Wiederholen",
+    "close": "Schließen",
+    "next": "Weiter",
+    "previous": "Zurück"
+  },
+  "theme": {
+    "toggle": "Theme wechseln",
+    "light": "Heller Modus",
+    "dark": "Dunkler Modus"
+  }
+}

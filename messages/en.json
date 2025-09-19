@@ -1,0 +1,35 @@
+{
+  "navigation": {
+    "home": "Home",
+    "characters": "Characters",
+    "episodes": "Episodes",
+    "locations": "Locations"
+  },
+  "characters": {
+    "title": "Rick and Morty Characters",
+    "loading": "Loading characters...",
+    "error": "Failed to load characters",
+    "status": "Status",
+    "species": "Species",
+    "gender": "Gender",
+    "origin": "Origin",
+    "location": "Location",
+    "episodes": "Episodes"
+  },
+  "common": {
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light mode",
+    "dark": "Dark mode"
+  }
+}

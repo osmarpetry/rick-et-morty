@@ -1,0 +1,35 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "characters": "Personnages",
+    "episodes": "Épisodes",
+    "locations": "Lieux"
+  },
+  "characters": {
+    "title": "Personnages de Rick et Morty",
+    "loading": "Chargement des personnages...",
+    "error": "Échec du chargement des personnages",
+    "status": "Statut",
+    "species": "Espèce",
+    "gender": "Genre",
+    "origin": "Origine",
+    "location": "Lieu",
+    "episodes": "Épisodes"
+  },
+  "common": {
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent"
+  },
+  "theme": {
+    "toggle": "Changer de thème",
+    "light": "Mode clair",
+    "dark": "Mode sombre"
+  }
+}
