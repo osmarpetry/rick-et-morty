@@ -1,27 +1,41 @@
 /**
- * Next.js Middleware for Internationalization
- * Handles locale detection without URL changes
+ * Simple Middleware for Internationalization
+ * Sets locale based on cookie without URL rewriting
  */
 
-import createMiddleware from 'next-intl/middleware';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ['en', 'de', 'fr'],
+export function middleware(request: NextRequest) {
+  // Get locale from cookie or default to 'en'
+  const locale = request.cookies.get('NEXT_LOCALE')?.value || 'en';
 
-  // Used when no locale matches
-  defaultLocale: 'en',
+  // Create response
+  const response = NextResponse.next();
 
-  // Never show the locale in the URL - keep URLs clean
-  localePrefix: 'never',
-});
+  // Set locale cookie if not present
+  if (!request.cookies.get('NEXT_LOCALE')) {
+    response.cookies.set('NEXT_LOCALE', locale, {
+      path: '/',
+      maxAge: 31536000, // 1 year
+      sameSite: 'lax',
+    });
+  }
+
+  // Set locale header for next-intl
+  response.headers.set('x-locale', locale);
+
+  return response;
+}
 
 export const config = {
-  // Match all pathnames except API routes and static files
   matcher: [
-    // Match all pathnames except for
-    // - … if they start with `/api`, `/_next` or `/_vercel`
-    // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|_next|_vercel|.*\\..*).*)',
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 };

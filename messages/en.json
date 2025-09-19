@@ -1,5 +1,6 @@
 {
   "navigation": {
+    "title": "Rick & Morty",
     "home": "Home",
     "characters": "Characters",
     "episodes": "Episodes",

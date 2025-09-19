@@ -1,46 +1,46 @@
 /**
- * Rick and Morty Character List Component
- * Features themed design and internationalization support
+ * CharacterList - Dumb Component (Atomic Design)
+ * Receives character data via props, no Apollo Client dependency
  */
 
 'use client';
 
 import React from 'react';
-import { useQuery } from '@apollo/client/react';
 import { Card, CardBody, CardHeader } from '@heroui/card';
 import { Avatar } from '@heroui/avatar';
 import { Chip } from '@heroui/chip';
 import { Spinner } from '@heroui/spinner';
 import { useTranslations } from 'next-intl';
 
-import { gql } from '../src/__generated__';
+export interface Character {
+  id: string;
+  name: string;
+  image: string;
+  status: 'Alive' | 'Dead' | 'unknown';
+  species: string;
+}
 
-const GET_CHARACTERS = gql(`
-  query GetCharacters {
-    characters {
-      results {
-        id
-        name
-        image
-        status
-        species
-      }
-    }
-  }
-`);
+export interface CharacterListProps {
+  characters?: Character[];
+  loading?: boolean;
+  error?: string;
+}
 
 /**
  * Status color mapping using Rick and Morty theme colors
  */
 const statusColorMap = {
-  Alive: 'success', // Portal green
-  Dead: 'danger', // Portal pink
-  unknown: 'warning', // Morty yellow
-} as const;
+  Alive: 'success' as const, // Portal green
+  Dead: 'danger' as const, // Portal pink
+  unknown: 'warning' as const, // Morty yellow
+};
 
-export function CharacterList() {
+export function CharacterList({
+  characters = [],
+  loading = false,
+  error,
+}: CharacterListProps) {
   const t = useTranslations('characters');
-  const { loading, error, data } = useQuery(GET_CHARACTERS);
 
   if (loading) {
     return (
@@ -57,13 +57,20 @@ export function CharacterList() {
           <h3 className='text-lg font-semibold text-danger'>{t('error')}</h3>
         </CardHeader>
         <CardBody>
-          <p className='text-danger-600'>{error.message}</p>
+          <p className='text-danger-600'>{error}</p>
         </CardBody>
       </Card>
     );
   }
 
-  const characters = data?.characters?.results?.slice(0, 12) || [];
+  if (characters.length === 0) {
+    return (
+      <div className='flex flex-col items-center justify-center h-64 text-default-600'>
+        <p className='text-lg font-semibold'>No characters found</p>
+        <p className='text-sm'>Try adjusting your search criteria</p>
+      </div>
+    );
+  }
 
   return (
     <div className='space-y-6'>
@@ -77,7 +84,7 @@ export function CharacterList() {
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4'>
         {characters.map(character => (
           <Card
-            key={character?.id}
+            key={character.id}
             isPressable
             className='
               group cursor-pointer transition-all duration-300
@@ -90,13 +97,13 @@ export function CharacterList() {
               <Avatar
                 className='ring-2 ring-primary/20 group-hover:ring-primary/60 transition-all'
                 size='lg'
-                src={character?.image || ''}
+                src={character.image || ''}
               />
               <div className='flex flex-col flex-1'>
                 <h3 className='text-lg font-bold text-foreground group-hover:text-primary transition-colors'>
-                  {character?.name}
+                  {character.name}
                 </h3>
-                <p className='text-sm text-default-500'>{character?.species}</p>
+                <p className='text-sm text-default-500'>{character.species}</p>
               </div>
             </CardHeader>
 
@@ -106,15 +113,11 @@ export function CharacterList() {
                   <span className='text-sm font-medium'>{t('status')}:</span>
                   <Chip
                     className='font-semibold'
-                    color={
-                      statusColorMap[
-                        character?.status as keyof typeof statusColorMap
-                      ] || 'default'
-                    }
+                    color={statusColorMap[character.status] || 'default'}
                     size='sm'
                     variant='flat'
                   >
-                    {character?.status}
+                    {character.status}
                   </Chip>
                 </div>
 

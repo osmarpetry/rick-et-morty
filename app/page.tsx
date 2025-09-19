@@ -1,5 +1,5 @@
-import CharacterList from '@/components/CharacterList';
+import CharacterListContainer from '@/components/CharacterListContainer';
 
 export default function Home() {
-  return <CharacterList />;
+  return <CharacterListContainer />;
 }

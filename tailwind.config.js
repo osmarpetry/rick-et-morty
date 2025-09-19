@@ -15,13 +15,17 @@ const config = {
         mono: ['var(--font-mono)'],
       },
       colors: {
-        // Rick and Morty custom colors for additional utility classes
-        'rick-blue': '#00b4d8',
-        'morty-yellow': '#f0e14a',
-        'portal-green': '#97ce4c',
-        'portal-pink': '#e89ac7',
-        'earth-brown': '#44281d',
-        'lab-peach': '#e4a788',
+        // Official Rick and Morty title screen colors for utility classes
+        'portal-green': '#08C952',
+        'rick-yellow': '#FCE46D',
+        'morty-yellow': '#EDCF6B',
+        'rick-red': '#A1140A',
+        'space-purple': '#160440',
+        // Legacy aliases for backward compatibility
+        'rick-blue': '#08C952', // Updated to portal green
+        'portal-pink': '#A1140A', // Updated to rick red
+        'earth-brown': '#160440', // Updated to space purple
+        'lab-peach': '#FCE46D', // Updated to rick yellow
       },
     },
   },
