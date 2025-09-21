@@ -40,6 +40,11 @@ export default defineConfig([
     '**/coverage',
     '**/.next',
     '**/build',
+    // Storybook build output
+    '**/storybook-static/**',
+    // Generated files and directories
+    '**/__generated__/**',
+    'stories/',
     'lib/graphql/__generated__/*',
     '**/*.generated.ts',
     '**/*.generated.tsx',

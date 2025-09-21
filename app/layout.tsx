@@ -5,14 +5,16 @@
 
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
-import { Link } from '@heroui/link';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import clsx from 'clsx';
 
 import { Providers } from './providers';
 
-import { Navigation } from '@/components/Navigation';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { SkipToMainContent } from '@/components/AccessibilityEnhancements';
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 
@@ -28,6 +30,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' },
@@ -53,23 +59,43 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-            <div className='relative flex flex-col min-h-screen'>
-              <Navigation />
-              <main className='container mx-auto max-w-7xl px-6 flex-grow py-8'>
-                {children}
-              </main>
-              <footer className='w-full flex items-center justify-center py-3 border-t border-divider'>
-                <Link
-                  isExternal
-                  className='flex items-center gap-1 text-current'
-                  href='https://heroui.com?utm_source=next-app-template'
-                  title='heroui.com homepage'
+            <ErrorBoundary>
+              <SkipToMainContent />
+              <div className='relative flex flex-col h-screen bg-background overflow-hidden'>
+                <header className='sticky top-0 z-30 backdrop-blur-sm bg-background/80 border-b border-default-200'>
+                  <div className='mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between'>
+                    <div className='flex items-center gap-3'>
+                      <h1 className='text-large font-semibold tracking-tight'>
+                        Rick & Morty Explorer
+                      </h1>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                      <ThemeSwitcher />
+                    </div>
+                  </div>
+                </header>
+                <main
+                  className='flex-1 overflow-auto'
+                  id='main-content'
+                  tabIndex={-1}
                 >
-                  <span className='text-default-600'>Powered by</span>
-                  <p className='text-primary'>HeroUI</p>
-                </Link>
+                  <div className='mx-auto max-w-6xl px-4 sm:px-6 py-8 h-full'>
+                    {children}
+                  </div>
+                </main>
+              </div>
+              <footer className='border-t border-default-200 flex-shrink-0'>
+                <div className='mx-auto max-w-6xl px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4'>
+                  <p className='text-tiny text-foreground-500 text-center sm:text-left'>
+                    Explore the multiverse with Rick & Morty characters • Built
+                    with Next.js & GraphQL
+                  </p>
+                  <div className='flex items-center'>
+                    <LanguageSwitcher />
+                  </div>
+                </div>
               </footer>
-            </div>
+            </ErrorBoundary>
           </Providers>
         </NextIntlClientProvider>
       </body>

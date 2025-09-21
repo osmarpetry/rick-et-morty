@@ -4,6 +4,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { NextIntlClientProvider } from 'next-intl';
 
 import { LanguageSwitcher } from './LanguageSwitcher';

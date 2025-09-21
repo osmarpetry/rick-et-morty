@@ -4,6 +4,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { ThemeProvider } from 'next-themes';
 
 import { ThemeToggle } from './ThemeToggle';

@@ -4,6 +4,7 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Card, CardBody, CardHeader } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Button } from '@heroui/button';
@@ -32,10 +33,10 @@ const ColorPalette = () => (
       <p className='text-default-600 mb-6'>
         Based on the color palette from{' '}
         <a
-          href='https://www.color-hex.com/color-palette/9134'
           className='text-primary underline'
-          target='_blank'
+          href='https://www.color-hex.com/color-palette/9134'
           rel='noopener noreferrer'
+          target='_blank'
         >
           color-hex.com/color-palette/9134
         </a>
@@ -49,17 +50,17 @@ const ColorPalette = () => (
       </h3>
       <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-primary-500 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-primary-500 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#08C952</p>
           <p className='text-xs text-default-500'>primary-500</p>
         </div>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-primary-300 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-primary-300 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#16a34a</p>
           <p className='text-xs text-default-500'>primary-300</p>
         </div>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-primary-700 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-primary-700 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#15803d</p>
           <p className='text-xs text-default-500'>primary-700</p>
         </div>
@@ -73,17 +74,17 @@ const ColorPalette = () => (
       </h3>
       <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-secondary-500 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-secondary-500 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#FCE46D</p>
           <p className='text-xs text-default-500'>secondary-500</p>
         </div>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-secondary-300 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-secondary-300 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#fde047</p>
           <p className='text-xs text-default-500'>secondary-300</p>
         </div>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-secondary-700 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-secondary-700 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#a16207</p>
           <p className='text-xs text-default-500'>secondary-700</p>
         </div>
@@ -97,17 +98,17 @@ const ColorPalette = () => (
       </h3>
       <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-danger-500 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-danger-500 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#A1140A</p>
           <p className='text-xs text-default-500'>danger-500</p>
         </div>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-danger-300 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-danger-300 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#f9a8d4</p>
           <p className='text-xs text-default-500'>danger-300</p>
         </div>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-danger-700 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-danger-700 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#be185d</p>
           <p className='text-xs text-default-500'>danger-700</p>
         </div>
@@ -119,12 +120,12 @@ const ColorPalette = () => (
       <h3 className='text-xl font-semibold mb-3'>Default - Earth Tones</h3>
       <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-default-500 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-default-500 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#e4a788</p>
           <p className='text-xs text-default-500'>default-500</p>
         </div>
         <div className='text-center'>
-          <div className='w-16 h-16 bg-default-900 rounded-lg mx-auto mb-2 border-2 border-default-200'></div>
+          <div className='w-16 h-16 bg-default-900 rounded-lg mx-auto mb-2 border-2 border-default-200' />
           <p className='text-sm font-mono'>#44281d</p>
           <p className='text-xs text-default-500'>default-900</p>
         </div>

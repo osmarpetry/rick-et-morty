@@ -5,7 +5,12 @@ import { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   schema: 'https://rickandmortyapi.com/graphql',
-  documents: ['src/**/*.tsx', 'app/**/*.tsx', 'components/**/*.tsx'],
+  documents: [
+    'src/**/*.tsx',
+    'app/**/*.tsx',
+    'components/**/*.tsx',
+    'lib/**/*.ts',
+  ],
   generates: {
     './src/__generated__/': {
       preset: 'client',
