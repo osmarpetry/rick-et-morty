@@ -1,7 +1,18 @@
 /**
- * CharacterTableContainer - Smart Component
- * Handles Apollo Client data fetching for the CharacterTable component
- * Uses URL parameters for state management (search, pagination, sorting, filtering)
+ * CharacterTablePage - Container Component (Smart Component)
+ *
+ * This component follows the Container/Presentational pattern:
+ * - Handles all business logic, data fetching, and state management
+ * - Uses Apollo Client for GraphQL data fetching
+ * - Manages URL-based state for search, pagination, and filtering
+ * - Delegates all presentation concerns to CharacterTableTemplate
+ *
+ * Key responsibilities:
+ * - GraphQL query execution and data transformation
+ * - URL state synchronization
+ * - Event handler creation and state updates
+ * - Debounced search implementation
+ * - Client-side filtering for multiple selections
  */
 
 'use client';
@@ -9,18 +20,15 @@
 import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client/react';
 
-import { GET_CHARACTERS_TABLE } from '../lib/graphql/queries/characterTable';
-import { useTableUrlState } from '../hooks/useTableUrlState';
-import { useDebouncedCallback } from '../hooks/useDebouncedCallback';
-
-import SearchBar from './search-bar';
-import CharacterTable from './character-table';
-import CharacterDrawer from './character-drawer';
-import { useKeyboardNavigation } from './AccessibilityEnhancements';
+import { GET_CHARACTERS_TABLE } from '../../lib/graphql/queries/characterTable';
+import { useTableUrlState } from '../../hooks/useTableUrlState';
+import { useDebouncedCallback } from '../../hooks/useDebouncedCallback';
+import { useKeyboardNavigation } from '../organisms/AccessibilityEnhancements';
+import CharacterTableTemplate from '../templates/CharacterTableTemplate';
 
 import { Character } from '@/types';
 
-export function CharacterTableContainer() {
+export function CharacterTablePage() {
   // Enable keyboard navigation
   useKeyboardNavigation();
 
@@ -37,7 +45,6 @@ export function CharacterTableContainer() {
     setSearch,
     setStatusFilter,
     setGenderFilter,
-    setSpeciesFilter,
     setVisibleColumns,
     setSelectedCharacter,
   } = useTableUrlState();
@@ -175,46 +182,37 @@ export function CharacterTableContainer() {
     setSelectedCharacter('');
   }, [setSelectedCharacter]);
 
+  const handleSearchClear = useCallback(() => {
+    handleSearchChange('');
+  }, [handleSearchChange]);
+
+  // Render the template with all required props
   return (
-    <div className='h-full flex flex-col gap-6'>
-      <section className='flex-shrink-0'>
-        <SearchBar
-          columnValues={
-            visibleColumns as ('name' | 'status' | 'species' | 'gender')[]
-          }
-          genderValues={genderFilter}
-          statusValues={statusFilter}
-          value={filterValue}
-          onChange={handleSearchChange}
-          onClear={() => handleSearchChange('')}
-          onColumnsChange={cols => setVisibleColumns(cols)}
-          onGenderChange={setGenderFilter}
-          onStatusChange={setStatusFilter}
-        />
-      </section>
-
-      <section className='flex-1 -mx-3 sm:mx-0 overflow-hidden'>
-        <CharacterTable
-          characters={characters}
-          error={error?.message || null}
-          loading={loading || isSearchPending}
-          page={currentPage}
-          pages={totalPages}
-          visibleColumns={
-            visibleColumns as ('name' | 'status' | 'species' | 'gender')[]
-          }
-          onPageChange={setPage}
-          onRowSelect={handleCharacterSelect}
-        />
-      </section>
-
-      <CharacterDrawer
-        character={selectedCharacterData}
-        isOpen={!!selectedCharacter}
-        onClose={handleCloseDrawer}
-      />
-    </div>
+    <CharacterTableTemplate
+      characters={characters}
+      currentPage={currentPage}
+      error={error?.message || null}
+      filterValue={filterValue}
+      genderFilter={genderFilter}
+      isSearchPending={isSearchPending}
+      loading={loading}
+      selectedCharacter={selectedCharacter}
+      selectedCharacterData={selectedCharacterData}
+      statusFilter={statusFilter}
+      totalPages={totalPages}
+      visibleColumns={
+        visibleColumns as ('name' | 'status' | 'species' | 'gender')[]
+      }
+      onCharacterSelect={handleCharacterSelect}
+      onCloseDrawer={handleCloseDrawer}
+      onColumnsChange={setVisibleColumns}
+      onGenderChange={setGenderFilter}
+      onPageChange={setPage}
+      onSearchChange={handleSearchChange}
+      onSearchClear={handleSearchClear}
+      onStatusChange={setStatusFilter}
+    />
   );
 }
 
-export default CharacterTableContainer;
+export default CharacterTablePage;

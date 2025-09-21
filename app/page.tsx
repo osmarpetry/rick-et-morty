@@ -1,5 +1,5 @@
-import CharacterTableContainer from '@/components/CharacterTableContainer';
+import CharacterTablePage from '@/components/pages/CharacterTablePage';
 
 export default function Home() {
-  return <CharacterTableContainer />;
+  return <CharacterTablePage />;
 }

@@ -11,10 +11,10 @@ import clsx from 'clsx';
 
 import { Providers } from './providers';
 
-import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { SkipToMainContent } from '@/components/AccessibilityEnhancements';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ErrorBoundary } from '@/components/organisms/ErrorBoundary';
+import { SkipToMainContent } from '@/components/organisms/AccessibilityEnhancements';
+import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher';
+import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 
