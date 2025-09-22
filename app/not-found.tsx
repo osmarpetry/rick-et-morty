@@ -1,8 +1,3 @@
-/**
- * Custom 404 Not Found Page
- * Displays when a page doesn't exist, with Rick and Morty theming and error boundary integration
- */
-
 import Link from 'next/link';
 import { Card, CardBody } from '@heroui/card';
 import { Button } from '@heroui/button';
@@ -34,8 +29,8 @@ export default function NotFound() {
                   Dimension Not Found
                 </h1>
                 <p className='text-default-500 text-lg'>
-                  This dimension doesn't exist in the multiverse. Rick must have
-                  closed this portal.
+                  This dimension doesn&apos;t exist in the multiverse. Rick must
+                  have closed this portal.
                 </p>
               </div>
             </div>
@@ -49,8 +44,8 @@ export default function NotFound() {
                   </h3>
                   <div className='space-y-2 text-sm text-default-600'>
                     <p>
-                      • The page you're looking for has been moved to another
-                      dimension
+                      • The page you&apos;re looking for has been moved to
+                      another dimension
                     </p>
                     <p>
                       • Rick might have accidentally deleted it during an
@@ -98,8 +93,8 @@ export default function NotFound() {
                   </h4>
                   <p className='text-xs text-default-500'>
                     In the Rick and Morty universe, there are infinite
-                    dimensions, but apparently this page isn't in any of them!
-                    🚀
+                    dimensions, but apparently this page isn&apos;t in any of
+                    them! 🚀
                   </p>
                 </div>
               </CardBody>

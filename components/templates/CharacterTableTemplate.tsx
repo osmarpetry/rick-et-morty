@@ -1,19 +1,9 @@
-/**
- * CharacterTableTemplate - Presentational Component
- * Pure template component that receives all data as props
- * Focuses solely on layout and rendering without business logic
- *
- * This component follows the Atomic Design methodology:
- * - Templates define page-level layouts
- * - They are composed of organisms, molecules, and atoms
- * - They contain no business logic or data fetching
- * - All data comes from props passed by container components
- */
-
 import React from 'react';
+
 import SearchBar from '../molecules/SearchBar';
 import CharacterTable from '../organisms/CharacterTable';
 import CharacterDrawer from '../organisms/CharacterDrawer';
+
 import { Character } from '@/types';
 
 interface CharacterTableTemplateProps {
@@ -100,10 +90,10 @@ export default function CharacterTableTemplate({
     <div className='h-full flex flex-col gap-6'>
       {/* Search Section - Fixed height, contains search bar and filters */}
       <section
-        className='flex-shrink-0'
-        role='search'
         aria-label='Character search and filters'
+        className='flex-shrink-0'
         data-testid='search-section'
+        role='search'
       >
         <SearchBar
           columnValues={visibleColumns}
@@ -120,10 +110,10 @@ export default function CharacterTableTemplate({
 
       {/* Table Section - Expandable area for the main content */}
       <section
-        className='flex-1 -mx-3 sm:mx-0 overflow-hidden'
-        role='main'
         aria-label='Character table'
+        className='flex-1 -mx-3 sm:mx-0 overflow-hidden'
         data-testid='main-content'
+        role='main'
       >
         <CharacterTable
           characters={characters}

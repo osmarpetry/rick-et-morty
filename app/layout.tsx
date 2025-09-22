@@ -1,8 +1,3 @@
-/**
- * Root Layout - Rick and Morty App with Internationalization
- * Handles theme, i18n, and navigation without locale-based routing
- */
-
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';

@@ -1,20 +1,3 @@
-/**
- * CharacterTablePage - Container Component (Smart Component)
- *
- * This component follows the Container/Presentational pattern:
- * - Handles all business logic, data fetching, and state management
- * - Uses Apollo Client for GraphQL data fetching
- * - Manages URL-based state for search, pagination, and filtering
- * - Delegates all presentation concerns to CharacterTableTemplate
- *
- * Key responsibilities:
- * - GraphQL query execution and data transformation
- * - URL state synchronization
- * - Event handler creation and state updates
- * - Debounced search implementation
- * - Client-side filtering for multiple selections
- */
-
 'use client';
 
 import React, {

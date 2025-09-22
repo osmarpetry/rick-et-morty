@@ -8,7 +8,6 @@
 import { useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-// Default values for table state
 const DEFAULT_VALUES = {
   page: 1,
   search: '',

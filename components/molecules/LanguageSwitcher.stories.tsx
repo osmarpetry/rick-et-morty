@@ -1,8 +1,3 @@
-/**
- * LanguageSwitcher Storybook Stories
- * Visual tests for the internationalization language switcher
- */
-
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { NextIntlClientProvider } from 'next-intl';

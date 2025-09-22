@@ -7,8 +7,8 @@ import { useDebouncedCallback } from '@/hooks/useDebouncedCallback';
 
 interface SearchBarProps {
   value: string;
-  statusValues: string[]; // Alive | Dead | unknown
-  genderValues: string[]; // Female | Male | Genderless | unknown
+  statusValues: string[];
+  genderValues: string[];
   columnValues: ('name' | 'status' | 'species' | 'gender')[];
   onChange: (val: string) => void;
   onClear?: () => void;
@@ -28,24 +28,19 @@ export default function SearchBar({
   onGenderChange,
   onColumnsChange,
 }: SearchBarProps) {
-  // Local state for immediate input updates
   const [inputValue, setInputValue] = useState(value);
 
-  // Debounced callback for API calls
   const debouncedOnChange = useDebouncedCallback(onChange, 500);
 
-  // Sync local state with prop value when it changes externally
   useEffect(() => {
     setInputValue(value);
   }, [value]);
 
-  // Handle input changes - update UI immediately, debounce API calls
   const handleInputChange = (newValue: string) => {
-    setInputValue(newValue); // Immediate UI update
-    debouncedOnChange(newValue); // Debounced API call
+    setInputValue(newValue);
+    debouncedOnChange(newValue);
   };
 
-  // Handle clear - immediate update for both UI and API
   const handleClear = () => {
     setInputValue('');
     if (onClear) {

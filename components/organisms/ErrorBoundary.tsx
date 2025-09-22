@@ -1,8 +1,3 @@
-/**
- * Error Boundary Component with Hero UI Styling
- * Catches JavaScript errors and displays a fallback UI with Rick and Morty theming
- */
-
 'use client';
 
 import React, { Component, ReactNode } from 'react';
@@ -38,8 +33,6 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    // eslint-disable-next-line no-console
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
     this.props.onError?.(error, errorInfo);
   }
 
@@ -63,7 +56,6 @@ export class ErrorBoundary extends Component<
   }
 }
 
-// Default error fallback with Rick and Morty theming
 function DefaultErrorFallback({
   error,
   resetError,
@@ -151,7 +143,6 @@ function DefaultErrorFallback({
   );
 }
 
-// Specialized error fallback for character table
 export function CharacterTableErrorFallback({
   error,
   resetError,

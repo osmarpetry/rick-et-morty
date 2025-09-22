@@ -1,8 +1,3 @@
-/**
- * Accessibility Enhancement Components
- * Provides improved ARIA labels, keyboard navigation, and screen reader support
- */
-
 'use client';
 
 import React, { useEffect, useCallback } from 'react';

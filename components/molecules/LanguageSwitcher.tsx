@@ -1,9 +1,3 @@
-/**
- * Language Switcher Component
- * Allows users to switch between English, German, and French
- * Uses cookies to persist language choice without URL changes
- */
-
 'use client';
 
 import { useState, useTransition } from 'react';

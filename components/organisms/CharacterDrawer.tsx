@@ -51,7 +51,6 @@ export default function CharacterDrawer({
   return (
     <Drawer
       classNames={{
-        // Custom Slots styled like heroui.com Drawer - Custom Styles
         wrapper: 'shadow-large',
         backdrop: 'bg-overlay/50 backdrop-blur-sm',
         base: 'rounded-l-large bg-content1',
@@ -61,7 +60,7 @@ export default function CharacterDrawer({
         closeButton:
           'top-3 right-3 rounded-full bg-content2 text-foreground hover:bg-content3',
       }}
-      hideCloseButton={false} // Show built-in close button (Custom Styles)
+      hideCloseButton={false}
       isOpen={isOpen}
       placement='bottom'
       size='3xl'
@@ -86,7 +85,6 @@ export default function CharacterDrawer({
             <DrawerBody>
               {character && (
                 <div className='grid grid-cols-1 md:grid-cols-12 gap-6 items-start'>
-                  {/* Image on the left for md+; on mobile it stacks on top */}
                   <div className='md:col-span-4'>
                     <div className='relative mx-auto md:mx-0 w-64 sm:w-72 md:w-full max-w-sm aspect-square overflow-hidden rounded-large bg-content2 border border-divider shadow-small'>
                       <Image
@@ -98,7 +96,6 @@ export default function CharacterDrawer({
                     </div>
                   </div>
                   <div className='md:col-span-8 w-full max-w-3xl md:max-w-none flex flex-col gap-4 justify-center'>
-                    {/* Details stack */}
                     <div className='flex flex-wrap items-center justify-center md:justify-start gap-2'>
                       <Chip
                         className='capitalize'

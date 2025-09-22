@@ -1,10 +1,7 @@
-/**
- * CharacterTable Storybook Stories
- * Visual tests for the character table component with data, loading, and error states
- */
-
 import type { Meta, StoryObj } from '@storybook/react';
+
 import CharacterTable from './CharacterTable';
+
 import { Character } from '@/types';
 
 // Simple mock function for story actions

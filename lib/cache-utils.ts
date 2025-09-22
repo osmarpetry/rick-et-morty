@@ -13,14 +13,10 @@ export const clearCache = async (): Promise<void> => {
   try {
     await client.clearStore();
 
-    // Also clear localStorage cache if available
     if (typeof window !== 'undefined') {
       window.localStorage.removeItem('apollo-cache-persist');
     }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error clearing cache:', error);
-  }
+  } catch (error) {}
 };
 
 /**
@@ -42,9 +38,6 @@ export const getCacheInfo = (): { size: number; keys: number } | null => {
       ).length,
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error getting cache info:', error);
-
     return null;
   }
 };
@@ -56,8 +49,5 @@ export const getCacheInfo = (): { size: number; keys: number } | null => {
 export const resetCache = async (): Promise<void> => {
   try {
     await client.resetStore();
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error resetting cache:', error);
-  }
+  } catch (error) {}
 };

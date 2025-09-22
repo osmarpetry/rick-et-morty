@@ -1,9 +1,5 @@
-/**
- * SearchBar Storybook Stories
- * Visual tests for the search bar component with filters and interactions
- */
-
 import type { Meta, StoryObj } from '@storybook/react';
+
 import SearchBar from './SearchBar';
 
 // Simple mock function for story actions
@@ -214,30 +210,30 @@ export const EmptyStates: Story = {
       <div>
         <h3 className='text-lg font-semibold mb-2'>No Search, No Filters</h3>
         <SearchBar
-          value=''
-          statusValues={[]}
-          genderValues={[]}
           columnValues={['name', 'status', 'species', 'gender']}
+          genderValues={[]}
+          statusValues={[]}
+          value=''
           onChange={mockFn}
           onClear={mockFn}
-          onStatusChange={mockFn}
-          onGenderChange={mockFn}
           onColumnsChange={mockFn}
+          onGenderChange={mockFn}
+          onStatusChange={mockFn}
         />
       </div>
 
       <div>
         <h3 className='text-lg font-semibold mb-2'>Minimal Columns</h3>
         <SearchBar
-          value=''
-          statusValues={[]}
-          genderValues={[]}
           columnValues={['name']}
+          genderValues={[]}
+          statusValues={[]}
+          value=''
           onChange={mockFn}
           onClear={mockFn}
-          onStatusChange={mockFn}
-          onGenderChange={mockFn}
           onColumnsChange={mockFn}
+          onGenderChange={mockFn}
+          onStatusChange={mockFn}
         />
       </div>
     </div>
@@ -259,30 +255,30 @@ export const LoadingStates: Story = {
       <div>
         <h3 className='text-lg font-semibold mb-2'>Normal State</h3>
         <SearchBar
-          value='Rick'
-          statusValues={['Alive']}
-          genderValues={[]}
           columnValues={['name', 'status', 'species', 'gender']}
+          genderValues={[]}
+          statusValues={['Alive']}
+          value='Rick'
           onChange={mockFn}
           onClear={mockFn}
-          onStatusChange={mockFn}
-          onGenderChange={mockFn}
           onColumnsChange={mockFn}
+          onGenderChange={mockFn}
+          onStatusChange={mockFn}
         />
       </div>
 
       <div>
         <h3 className='text-lg font-semibold mb-2'>With Search Value</h3>
         <SearchBar
-          value='Searching...'
-          statusValues={[]}
-          genderValues={[]}
           columnValues={['name', 'status', 'species', 'gender']}
+          genderValues={[]}
+          statusValues={[]}
+          value='Searching...'
           onChange={mockFn}
           onClear={mockFn}
-          onStatusChange={mockFn}
-          onGenderChange={mockFn}
           onColumnsChange={mockFn}
+          onGenderChange={mockFn}
+          onStatusChange={mockFn}
         />
       </div>
     </div>

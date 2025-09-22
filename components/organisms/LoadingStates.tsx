@@ -1,8 +1,3 @@
-/**
- * Enhanced Loading States Components
- * Provides various loading indicators with Hero UI components and Rick and Morty theming
- */
-
 'use client';
 
 import React from 'react';

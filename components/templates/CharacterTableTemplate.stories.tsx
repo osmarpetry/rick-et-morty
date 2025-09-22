@@ -1,10 +1,7 @@
-/**
- * CharacterTableTemplate Storybook Stories
- * Visual tests for the character table template with different data states
- */
-
 import type { Meta, StoryObj } from '@storybook/react';
+
 import CharacterTableTemplate from './CharacterTableTemplate';
+
 import { Character } from '@/types';
 
 // Simple mock function for story actions
@@ -263,25 +260,25 @@ export const PaginationStates: Story = {
         <div className='h-96'>
           <CharacterTableTemplate
             characters={mockCharacters}
-            selectedCharacterData={null}
-            loading={false}
-            error={null}
-            isSearchPending={false}
-            filterValue=''
-            statusFilter={[]}
-            genderFilter={[]}
-            visibleColumns={['name', 'status', 'species', 'gender']}
             currentPage={1}
-            totalPages={10}
+            error={null}
+            filterValue=''
+            genderFilter={[]}
+            isSearchPending={false}
+            loading={false}
             selectedCharacter=''
+            selectedCharacterData={null}
+            statusFilter={[]}
+            totalPages={10}
+            visibleColumns={['name', 'status', 'species', 'gender']}
+            onCharacterSelect={mockFn}
+            onCloseDrawer={mockFn}
+            onColumnsChange={mockFn}
+            onGenderChange={mockFn}
+            onPageChange={mockFn}
             onSearchChange={mockFn}
             onSearchClear={mockFn}
             onStatusChange={mockFn}
-            onGenderChange={mockFn}
-            onColumnsChange={mockFn}
-            onPageChange={mockFn}
-            onCharacterSelect={mockFn}
-            onCloseDrawer={mockFn}
           />
         </div>
       </div>
@@ -291,25 +288,25 @@ export const PaginationStates: Story = {
         <div className='h-96'>
           <CharacterTableTemplate
             characters={mockCharacters}
-            selectedCharacterData={null}
-            loading={false}
-            error={null}
-            isSearchPending={false}
-            filterValue=''
-            statusFilter={[]}
-            genderFilter={[]}
-            visibleColumns={['name', 'status', 'species', 'gender']}
             currentPage={5}
-            totalPages={10}
+            error={null}
+            filterValue=''
+            genderFilter={[]}
+            isSearchPending={false}
+            loading={false}
             selectedCharacter=''
+            selectedCharacterData={null}
+            statusFilter={[]}
+            totalPages={10}
+            visibleColumns={['name', 'status', 'species', 'gender']}
+            onCharacterSelect={mockFn}
+            onCloseDrawer={mockFn}
+            onColumnsChange={mockFn}
+            onGenderChange={mockFn}
+            onPageChange={mockFn}
             onSearchChange={mockFn}
             onSearchClear={mockFn}
             onStatusChange={mockFn}
-            onGenderChange={mockFn}
-            onColumnsChange={mockFn}
-            onPageChange={mockFn}
-            onCharacterSelect={mockFn}
-            onCloseDrawer={mockFn}
           />
         </div>
       </div>
@@ -319,25 +316,25 @@ export const PaginationStates: Story = {
         <div className='h-96'>
           <CharacterTableTemplate
             characters={mockCharacters}
-            selectedCharacterData={null}
-            loading={false}
-            error={null}
-            isSearchPending={false}
-            filterValue=''
-            statusFilter={[]}
-            genderFilter={[]}
-            visibleColumns={['name', 'status', 'species', 'gender']}
             currentPage={10}
-            totalPages={10}
+            error={null}
+            filterValue=''
+            genderFilter={[]}
+            isSearchPending={false}
+            loading={false}
             selectedCharacter=''
+            selectedCharacterData={null}
+            statusFilter={[]}
+            totalPages={10}
+            visibleColumns={['name', 'status', 'species', 'gender']}
+            onCharacterSelect={mockFn}
+            onCloseDrawer={mockFn}
+            onColumnsChange={mockFn}
+            onGenderChange={mockFn}
+            onPageChange={mockFn}
             onSearchChange={mockFn}
             onSearchClear={mockFn}
             onStatusChange={mockFn}
-            onGenderChange={mockFn}
-            onColumnsChange={mockFn}
-            onPageChange={mockFn}
-            onCharacterSelect={mockFn}
-            onCloseDrawer={mockFn}
           />
         </div>
       </div>
@@ -411,25 +408,25 @@ export const ColumnVariations: Story = {
         <div className='h-80'>
           <CharacterTableTemplate
             characters={mockCharacters}
-            selectedCharacterData={null}
-            loading={false}
-            error={null}
-            isSearchPending={false}
-            filterValue=''
-            statusFilter={[]}
-            genderFilter={[]}
-            visibleColumns={['name']}
             currentPage={1}
-            totalPages={1}
+            error={null}
+            filterValue=''
+            genderFilter={[]}
+            isSearchPending={false}
+            loading={false}
             selectedCharacter=''
+            selectedCharacterData={null}
+            statusFilter={[]}
+            totalPages={1}
+            visibleColumns={['name']}
+            onCharacterSelect={mockFn}
+            onCloseDrawer={mockFn}
+            onColumnsChange={mockFn}
+            onGenderChange={mockFn}
+            onPageChange={mockFn}
             onSearchChange={mockFn}
             onSearchClear={mockFn}
             onStatusChange={mockFn}
-            onGenderChange={mockFn}
-            onColumnsChange={mockFn}
-            onPageChange={mockFn}
-            onCharacterSelect={mockFn}
-            onCloseDrawer={mockFn}
           />
         </div>
       </div>
@@ -439,25 +436,25 @@ export const ColumnVariations: Story = {
         <div className='h-80'>
           <CharacterTableTemplate
             characters={mockCharacters}
-            selectedCharacterData={null}
-            loading={false}
-            error={null}
-            isSearchPending={false}
-            filterValue=''
-            statusFilter={[]}
-            genderFilter={[]}
-            visibleColumns={['name', 'status']}
             currentPage={1}
-            totalPages={1}
+            error={null}
+            filterValue=''
+            genderFilter={[]}
+            isSearchPending={false}
+            loading={false}
             selectedCharacter=''
+            selectedCharacterData={null}
+            statusFilter={[]}
+            totalPages={1}
+            visibleColumns={['name', 'status']}
+            onCharacterSelect={mockFn}
+            onCloseDrawer={mockFn}
+            onColumnsChange={mockFn}
+            onGenderChange={mockFn}
+            onPageChange={mockFn}
             onSearchChange={mockFn}
             onSearchClear={mockFn}
             onStatusChange={mockFn}
-            onGenderChange={mockFn}
-            onColumnsChange={mockFn}
-            onPageChange={mockFn}
-            onCharacterSelect={mockFn}
-            onCloseDrawer={mockFn}
           />
         </div>
       </div>
@@ -467,25 +464,25 @@ export const ColumnVariations: Story = {
         <div className='h-80'>
           <CharacterTableTemplate
             characters={mockCharacters}
-            selectedCharacterData={null}
-            loading={false}
-            error={null}
-            isSearchPending={false}
-            filterValue=''
-            statusFilter={[]}
-            genderFilter={[]}
-            visibleColumns={['name', 'status', 'species', 'gender']}
             currentPage={1}
-            totalPages={1}
+            error={null}
+            filterValue=''
+            genderFilter={[]}
+            isSearchPending={false}
+            loading={false}
             selectedCharacter=''
+            selectedCharacterData={null}
+            statusFilter={[]}
+            totalPages={1}
+            visibleColumns={['name', 'status', 'species', 'gender']}
+            onCharacterSelect={mockFn}
+            onCloseDrawer={mockFn}
+            onColumnsChange={mockFn}
+            onGenderChange={mockFn}
+            onPageChange={mockFn}
             onSearchChange={mockFn}
             onSearchClear={mockFn}
             onStatusChange={mockFn}
-            onGenderChange={mockFn}
-            onColumnsChange={mockFn}
-            onPageChange={mockFn}
-            onCharacterSelect={mockFn}
-            onCloseDrawer={mockFn}
           />
         </div>
       </div>

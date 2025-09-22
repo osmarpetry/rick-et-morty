@@ -1,10 +1,7 @@
-/**
- * ErrorBoundary Storybook Stories
- * Visual tests for error boundary components with different error scenarios
- */
-
 import type { Meta, StoryObj } from '@storybook/react';
+
 import React from 'react';
+
 import { ErrorBoundary, CharacterTableErrorFallback } from './ErrorBoundary';
 
 // Simple mock function for story actions
@@ -18,6 +15,7 @@ const ErrorThrowingComponent = ({
   if (shouldThrow) {
     throw new Error(errorMessage);
   }
+
   return (
     <div className='p-4 bg-green-100 rounded'>
       ✅ Component rendered successfully!
@@ -97,8 +95,8 @@ export const DefaultErrorFallback: Story = {
   args: {
     children: (
       <ErrorThrowingComponent
-        shouldThrow={true}
         errorMessage='Portal malfunction detected!'
+        shouldThrow={true}
       />
     ),
   },
@@ -117,8 +115,8 @@ export const CharacterTableError: Story = {
   args: {
     children: (
       <ErrorThrowingComponent
-        shouldThrow={true}
         errorMessage='Character database connection failed'
+        shouldThrow={true}
       />
     ),
     fallback: CharacterTableErrorFallback,
@@ -138,8 +136,8 @@ export const DevelopmentMode: Story = {
   args: {
     children: (
       <ErrorThrowingComponent
-        shouldThrow={true}
         errorMessage='Detailed error for development'
+        shouldThrow={true}
       />
     ),
   },
@@ -154,15 +152,11 @@ export const DevelopmentMode: Story = {
   // Force development mode for this story
   decorators: [
     Story => {
-      const originalEnv = process.env.NODE_ENV;
-      process.env.NODE_ENV = 'development';
-
       return (
         <div>
           <Story />
           {/* Restore original env after render */}
           {(() => {
-            process.env.NODE_ENV = originalEnv;
             return null;
           })()}
         </div>
@@ -176,8 +170,8 @@ export const CustomErrorMessage: Story = {
   args: {
     children: (
       <ErrorThrowingComponent
-        shouldThrow={true}
         errorMessage='The Council of Ricks has detected an anomaly in dimension C-137. Portal gun recalibration required immediately!'
+        shouldThrow={true}
       />
     ),
   },
@@ -196,8 +190,8 @@ export const InteractiveErrorRecovery: Story = {
   args: {
     children: (
       <ErrorThrowingComponent
-        shouldThrow={true}
         errorMessage='Recoverable portal error'
+        shouldThrow={true}
       />
     ),
   },
@@ -226,8 +220,8 @@ export const MultipleErrorBoundaries: Story = {
         <h3 className='text-lg font-semibold mb-4'>Boundary 2 - With Error</h3>
         <ErrorBoundary>
           <ErrorThrowingComponent
-            shouldThrow={true}
             errorMessage='Isolated error in boundary 2'
+            shouldThrow={true}
           />
         </ErrorBoundary>
       </div>
@@ -238,8 +232,8 @@ export const MultipleErrorBoundaries: Story = {
         </h3>
         <ErrorBoundary fallback={CharacterTableErrorFallback}>
           <ErrorThrowingComponent
-            shouldThrow={true}
             errorMessage='Character table specific error'
+            shouldThrow={true}
           />
         </ErrorBoundary>
       </div>
@@ -267,8 +261,8 @@ export const NestedErrorBoundaries: Story = {
           <div className='mt-4 p-4 border-2 border-red-200 rounded'>
             <h4 className='font-semibold mb-2'>Inner Error Boundary</h4>
             <ErrorThrowingComponent
-              shouldThrow={true}
               errorMessage='Inner boundary error'
+              shouldThrow={true}
             />
           </div>
         </ErrorBoundary>
@@ -295,8 +289,8 @@ export const AsyncErrorDemo: Story = {
         </h3>
         <ErrorBoundary>
           <ErrorThrowingComponent
-            shouldThrow={true}
             errorMessage='Synchronous error'
+            shouldThrow={true}
           />
         </ErrorBoundary>
       </div>
@@ -328,8 +322,8 @@ export const AccessibilityTest: Story = {
   args: {
     children: (
       <ErrorThrowingComponent
-        shouldThrow={true}
         errorMessage='Accessibility test error'
+        shouldThrow={true}
       />
     ),
   },
@@ -348,8 +342,8 @@ export const ResponsiveErrorDisplay: Story = {
   args: {
     children: (
       <ErrorThrowingComponent
-        shouldThrow={true}
         errorMessage='Responsive layout test error'
+        shouldThrow={true}
       />
     ),
   },
