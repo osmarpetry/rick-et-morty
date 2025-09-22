@@ -67,27 +67,35 @@ export function useTableUrlState(): UseTableUrlStateReturn {
   // Get current state from URL parameters
   const currentState: TableState = {
     page:
-      parseInt(searchParams.get('page') || String(DEFAULT_VALUES.page), 10) ||
+      parseInt(searchParams?.get('page') || String(DEFAULT_VALUES.page), 10) ||
       DEFAULT_VALUES.page,
-    search: searchParams.get('search') || DEFAULT_VALUES.search,
-    status: parseArrayParam(searchParams.get('status'), DEFAULT_VALUES.status),
-    gender: parseArrayParam(searchParams.get('gender'), DEFAULT_VALUES.gender),
+    search: searchParams?.get('search') || DEFAULT_VALUES.search,
+    status: parseArrayParam(
+      searchParams?.get('status') ?? null,
+      DEFAULT_VALUES.status
+    ),
+    gender: parseArrayParam(
+      searchParams?.get('gender') ?? null,
+      DEFAULT_VALUES.gender
+    ),
     species: parseArrayParam(
-      searchParams.get('species'),
+      searchParams?.get('species') ?? null,
       DEFAULT_VALUES.species
     ),
     columns: parseArrayParam(
-      searchParams.get('columns'),
+      searchParams?.get('columns') ?? null,
       DEFAULT_VALUES.columns
     ),
     selectedCharacter:
-      searchParams.get('character') || DEFAULT_VALUES.selectedCharacter,
+      searchParams?.get('character') || DEFAULT_VALUES.selectedCharacter,
   };
 
   // Helper function to update URL parameters
   const updateURL = useCallback(
     (updates: Partial<Record<string, string | number | string[] | null>>) => {
-      const newSearchParams = new URLSearchParams(searchParams.toString());
+      const newSearchParams = new URLSearchParams(
+        searchParams?.toString() || ''
+      );
 
       Object.entries(updates).forEach(([key, value]) => {
         // Check if value should be removed from URL

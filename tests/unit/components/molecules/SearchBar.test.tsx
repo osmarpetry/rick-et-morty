@@ -32,7 +32,12 @@ describe('SearchBar Component', () => {
     value: '',
     statusValues: [],
     genderValues: [],
-    columnValues: ['name', 'status', 'species', 'gender'] as const,
+    columnValues: ['name', 'status', 'species', 'gender'] as (
+      | 'name'
+      | 'status'
+      | 'species'
+      | 'gender'
+    )[],
     onChange: vi.fn(),
     onClear: vi.fn(),
     onStatusChange: vi.fn(),
