@@ -1,8 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'Next.js + HeroUI',
-  description: 'Make beautiful websites regardless of your design experience.',
+  name: 'Rick and Morty Explorer',
+  description:
+    'Explore Rick and Morty characters with search, filters, pagination, and detailed drawers. Built with Next.js, TypeScript, Tailwind CSS, Hero UI, and Apollo Client.',
   navItems: [
     {
       label: 'Home',

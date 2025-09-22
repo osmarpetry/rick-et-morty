@@ -24,6 +24,28 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    'Rick and Morty',
+    'Rick & Morty',
+    'Character Explorer',
+    'Next.js',
+    'GraphQL',
+    'Apollo Client',
+    'Hero UI',
+    'Tailwind CSS',
+  ],
+  applicationName: siteConfig.name,
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    type: 'website',
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
   icons: {
     icon: '/favicon.ico',
   },
@@ -66,7 +88,7 @@ export default async function RootLayout({
                   <div className='mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between'>
                     <div className='flex items-center gap-3'>
                       <h1 className='text-large font-semibold tracking-tight'>
-                        Rick & Morty Explorer
+                        Rick and Morty Explorer
                       </h1>
                     </div>
                     <div className='flex items-center gap-3'>
