@@ -20,29 +20,28 @@ Cache persistence allows the application to store GraphQL query results in the b
 ```typescript
 import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
 
-// Configure cache with type policies
+// Configure cache with type policies for HeroUI async pagination
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
         characters: {
-          keyArgs: ['filter'], // Keep different filters separate
-          merge(existing, incoming, { args }) {
-            // Handle pagination by merging results
-            if (!existing) return incoming;
-
-            if (args?.page && args.page > 1) {
-              return {
-                ...incoming,
-                results: [
-                  ...(existing.results || []),
-                  ...(incoming.results || []),
-                ],
-              };
-            }
-
-            return incoming;
-          },
+          keyArgs: ['filter', 'page'], // Keep different filters AND pages separate
+          // Each page is cached separately for optimal performance
+          // This prevents unnecessary refetches when navigating between cached pages
+        },
+      },
+    },
+    Characters: {
+      fields: {
+        // Separate caching for pagination info vs results
+        info: {
+          // Pagination info (count, pages, next, prev) is cached per filter only
+          keyArgs: ['filter'], // Cache info per filter, not per page
+        },
+        results: {
+          // Results are cached per page and filter combination
+          keyArgs: ['filter', 'page'], // Cache results per page and filter
         },
       },
     },
@@ -64,6 +63,40 @@ if (typeof window !== 'undefined') {
   });
 }
 ```
+
+#### Query Configuration (`components/pages/CharacterTablePage.tsx`)
+
+Following the [HeroUI async pagination pattern](https://www.heroui.com/docs/components/table#async-pagination):
+
+```typescript
+// Use lazy query for better control over when to fetch
+const [executeQuery, { loading, error, data, called }] = useLazyQuery(
+  GET_CHARACTERS_TABLE,
+  {
+    fetchPolicy: 'cache-first', // Use cache first to prevent unnecessary fetches
+    errorPolicy: 'all',
+    notifyOnNetworkStatusChange: true,
+  }
+);
+
+// Execute query when dependencies change (HeroUI async pagination pattern)
+useEffect(() => {
+  executeQuery({
+    variables: {
+      page: currentPage,
+      filter,
+    },
+  });
+}, [executeQuery, currentPage, filter]);
+```
+
+**HeroUI Async Pagination Benefits:**
+
+- **Single Fetch**: Only fetches once per unique page/filter combination
+- **Controlled Execution**: Uses `useLazyQuery` for precise control over when to fetch
+- **Cache-First**: Prevents unnecessary network requests for cached data
+- **Pagination Stability**: Pagination component remains stable during navigation
+- **Performance**: Optimal performance with intelligent caching
 
 #### Provider Integration (`app/providers.tsx`)
 

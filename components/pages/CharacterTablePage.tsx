@@ -17,8 +17,14 @@
 
 'use client';
 
-import React, { useMemo, useCallback, useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client/react';
+import React, {
+  useMemo,
+  useCallback,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
+import { useLazyQuery } from '@apollo/client/react';
 
 import { GET_CHARACTERS_TABLE } from '../../lib/graphql/queries/characterTable';
 import { useTableUrlState } from '../../hooks/useTableUrlState';
@@ -51,6 +57,9 @@ export function CharacterTablePage() {
 
   // Local state for immediate UI updates
   const [filterValue, setFilterValue] = useState(urlSearchValue);
+
+  // Track previous values to prevent unnecessary re-executions
+  const prevValuesRef = useRef({ currentPage, filter: null });
 
   // Sync local state with URL state
   useEffect(() => {
@@ -97,14 +106,43 @@ export function CharacterTablePage() {
     return Object.keys(filterObj).length > 0 ? filterObj : undefined;
   }, [urlSearchValue, statusFilter, genderFilter, speciesFilter]);
 
-  // Execute GraphQL query
-  const { loading, error, data } = useQuery(GET_CHARACTERS_TABLE, {
-    variables: {
-      page: currentPage,
-      filter,
+  // Use lazy query for better control over when to fetch
+  const [executeQueryFn, { loading, error, data }] = useLazyQuery(
+    GET_CHARACTERS_TABLE,
+    {
+      fetchPolicy: 'cache-first', // Use cache first to prevent unnecessary fetches
+      errorPolicy: 'all',
+      notifyOnNetworkStatusChange: true,
+    }
+  );
+
+  // Stable execute query function to prevent infinite loops
+  const executeQuery = useCallback(
+    (variables: { page: number; filter: any }) => {
+      executeQueryFn({ variables });
     },
-    notifyOnNetworkStatusChange: true,
-  });
+    [executeQueryFn]
+  );
+
+  // Execute query when dependencies change (HeroUI async pagination pattern)
+  useEffect(() => {
+    // Stringify filter for comparison since it's an object
+    const filterString = JSON.stringify(filter);
+    const prevFilterString = JSON.stringify(prevValuesRef.current.filter);
+
+    // Only execute if values have actually changed
+    if (
+      prevValuesRef.current.currentPage !== currentPage ||
+      prevFilterString !== filterString
+    ) {
+      prevValuesRef.current = { currentPage, filter };
+
+      executeQuery({
+        page: currentPage,
+        filter,
+      });
+    }
+  }, [currentPage, filter, executeQuery]);
 
   // Transform API data to component format
   const characters: Character[] = useMemo(() => {

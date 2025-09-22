@@ -4,7 +4,6 @@
  */
 
 import { ApolloClient, InMemoryCache, HttpLink, from } from '@apollo/client';
-import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
 
 // Create HTTP link for GraphQL endpoint
 const httpLink = new HttpLink({
@@ -16,29 +15,24 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        // Configure pagination for characters query
+        // Configure pagination for characters query - HeroUI async pagination pattern
         characters: {
-          keyArgs: ['filter'], // Keep different filters separate
-          merge(existing, incoming, { args }) {
-            // Handle pagination by merging results
-            if (!existing) {
-              return incoming;
-            }
-
-            // If it's a new page, merge the results
-            if (args?.page && args.page > 1) {
-              return {
-                ...incoming,
-                results: [
-                  ...(existing.results || []),
-                  ...(incoming.results || []),
-                ],
-              };
-            }
-
-            // Otherwise, replace with new results (new search/filter)
-            return incoming;
-          },
+          keyArgs: ['filter', 'page'], // Keep different filters AND pages separate
+          // Each page is cached separately for optimal performance
+          // This prevents unnecessary refetches when navigating between cached pages
+        },
+      },
+    },
+    Characters: {
+      fields: {
+        // Separate caching for pagination info vs results
+        info: {
+          // Pagination info (count, pages, next, prev) is cached per filter only
+          keyArgs: ['filter'], // Cache info per filter, not per page
+        },
+        results: {
+          // Results are cached per page and filter combination
+          keyArgs: ['filter', 'page'], // Cache results per page and filter
         },
       },
     },
@@ -49,21 +43,8 @@ const cache = new InMemoryCache({
   },
 });
 
-// Initialize cache persistence
-let persistor: Promise<void> | null = null;
-
-if (typeof window !== 'undefined') {
-  // Only run on client side
-  persistor = persistCache({
-    cache,
-    storage: new LocalStorageWrapper(window.localStorage),
-    maxSize: 1048576, // 1MB
-    debug: process.env.NODE_ENV === 'development',
-  }).catch(error => {
-    // eslint-disable-next-line no-console
-    console.error('Error persisting cache:', error);
-  });
-}
+// Cache is configured for optimal HeroUI async pagination performance
+// Persistence can be added later if needed
 
 // Create Apollo Client instance
 const client = new ApolloClient({
@@ -71,15 +52,16 @@ const client = new ApolloClient({
   cache,
   defaultOptions: {
     watchQuery: {
+      fetchPolicy: 'cache-first', // Prefer cache to reduce network requests
       errorPolicy: 'all',
       notifyOnNetworkStatusChange: true,
     },
     query: {
+      fetchPolicy: 'cache-first', // Prefer cache to reduce network requests
       errorPolicy: 'all',
     },
   },
 });
 
-// Export both client and persistor for potential use in app
-export { persistor };
+// Export Apollo Client instance
 export default client;
