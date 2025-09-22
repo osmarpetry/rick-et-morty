@@ -27,7 +27,7 @@ const meta: Meta<typeof LanguageSwitcher> = {
     docs: {
       description: {
         component:
-          'Language switcher component with country flags for English (UK), German, and French locales.',
+          'Language switcher component for English, German, and French locales.',
       },
     },
   },
@@ -82,7 +82,7 @@ export const AllLanguages: Story = {
     docs: {
       description: {
         story:
-          'Shows all available language options with their respective country flags: UK 🇬🇧, Germany 🇩🇪, and France 🇫🇷.',
+          'Shows all available language options: English, German, and French.',
       },
     },
   },

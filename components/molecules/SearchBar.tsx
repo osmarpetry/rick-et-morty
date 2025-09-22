@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '@heroui/input';
 import { Select, SelectItem } from '@heroui/select';
 import { Icon } from '@iconify/react';
+
+import { useDebouncedCallback } from '@/hooks/useDebouncedCallback';
 
 interface SearchBarProps {
   value: string;
@@ -26,6 +28,33 @@ export default function SearchBar({
   onGenderChange,
   onColumnsChange,
 }: SearchBarProps) {
+  // Local state for immediate input updates
+  const [inputValue, setInputValue] = useState(value);
+
+  // Debounced callback for API calls
+  const debouncedOnChange = useDebouncedCallback(onChange, 500);
+
+  // Sync local state with prop value when it changes externally
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
+
+  // Handle input changes - update UI immediately, debounce API calls
+  const handleInputChange = (newValue: string) => {
+    setInputValue(newValue); // Immediate UI update
+    debouncedOnChange(newValue); // Debounced API call
+  };
+
+  // Handle clear - immediate update for both UI and API
+  const handleClear = () => {
+    setInputValue('');
+    if (onClear) {
+      onClear();
+    } else {
+      onChange(''); // Immediate API call for clear
+    }
+  };
+
   return (
     <div className='w-full flex flex-col gap-3'>
       {/* Search input - full width */}
@@ -47,9 +76,9 @@ export default function SearchBar({
               width={18}
             />
           }
-          value={value}
-          onClear={onClear}
-          onValueChange={onChange}
+          value={inputValue}
+          onClear={handleClear}
+          onValueChange={handleInputChange}
         />
       </div>
 

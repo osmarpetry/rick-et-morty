@@ -103,6 +103,7 @@ export default function CharacterTableTemplate({
         className='flex-shrink-0'
         role='search'
         aria-label='Character search and filters'
+        data-testid='search-section'
       >
         <SearchBar
           columnValues={visibleColumns}
@@ -122,6 +123,7 @@ export default function CharacterTableTemplate({
         className='flex-1 -mx-3 sm:mx-0 overflow-hidden'
         role='main'
         aria-label='Character table'
+        data-testid='main-content'
       >
         <CharacterTable
           characters={characters}

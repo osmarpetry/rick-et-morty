@@ -38,6 +38,7 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    // eslint-disable-next-line no-console
     console.error('ErrorBoundary caught an error:', error, errorInfo);
     this.props.onError?.(error, errorInfo);
   }
@@ -87,8 +88,8 @@ function DefaultErrorFallback({
                 Portal Malfunction!
               </h2>
               <p className='text-default-500 text-sm'>
-                The multiverse connection is unstable. Rick's portal gun needs
-                recalibration.
+                The multiverse connection is unstable. Rick&apos;s portal gun
+                needs recalibration.
               </p>
             </div>
           </div>
@@ -223,7 +224,7 @@ export function CharacterTableErrorFallback({
             <ul className='text-left space-y-1'>
               <li>• Interdimensional portal interference</li>
               <li>• Council of Ricks maintenance</li>
-              <li>• Morty's latest experiment gone wrong</li>
+              <li>• Morty&apos;s latest experiment gone wrong</li>
             </ul>
           </div>
         </CardBody>

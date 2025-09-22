@@ -244,7 +244,7 @@ Language switching is available in the header with persistent user preference.
 
 - **Framework:** Vitest with React Testing Library
 - **Coverage:** Components, hooks, and utilities
-- **Mocking:** MSW for GraphQL API mocking
+- **Mocking:** Function-level mocking with Vitest
 
 ### E2E Testing
 

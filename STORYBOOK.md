@@ -37,8 +37,7 @@ Our Storybook is fully integrated with the Rick and Morty design system:
 
 ### Components
 
-- **ThemeToggle**: Rick and Morty themed toggle with portal colors
-- **LanguageSwitcher**: Country flags for UK 🇬🇧, Germany 🇩🇪, France 🇫🇷
+- **LanguageSwitcher**: Language selection for English, German, French
 - **Navigation**: Complete navigation with gradients and theming
 - **CharacterList**: Apollo Client integration with mocked data
 

@@ -18,9 +18,9 @@ import { Button } from '@heroui/button';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
 
 const languages = [
-  { code: 'en', name: 'English', flag: '🇬🇧' }, // UK flag instead of US
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', name: 'English' },
+  { code: 'de', name: 'Deutsch' },
+  { code: 'fr', name: 'Français' },
 ];
 
 export function LanguageSwitcher() {
@@ -46,14 +46,7 @@ export function LanguageSwitcher() {
           className='min-w-unit-20'
           isLoading={isPending}
           size='sm'
-          startContent={
-            !isPending &&
-            (currentLanguage ? (
-              <span className='text-lg'>{currentLanguage.flag}</span>
-            ) : (
-              <GlobeAltIcon className='h-4 w-4' />
-            ))
-          }
+          startContent={!isPending && <GlobeAltIcon className='h-4 w-4' />}
           variant='flat'
         >
           {!isPending && (currentLanguage?.code.toUpperCase() || 'EN')}
@@ -67,7 +60,6 @@ export function LanguageSwitcher() {
           <DropdownItem
             key={language.code}
             className={locale === language.code ? 'bg-primary/10' : ''}
-            startContent={<span className='text-lg'>{language.flag}</span>}
           >
             {language.name}
           </DropdownItem>

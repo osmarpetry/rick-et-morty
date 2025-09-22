@@ -67,7 +67,9 @@ export function useTableUrlState(): UseTableUrlStateReturn {
 
   // Get current state from URL parameters
   const currentState: TableState = {
-    page: parseInt(searchParams.get('page') || String(DEFAULT_VALUES.page), 10),
+    page:
+      parseInt(searchParams.get('page') || String(DEFAULT_VALUES.page), 10) ||
+      DEFAULT_VALUES.page,
     search: searchParams.get('search') || DEFAULT_VALUES.search,
     status: parseArrayParam(searchParams.get('status'), DEFAULT_VALUES.status),
     gender: parseArrayParam(searchParams.get('gender'), DEFAULT_VALUES.gender),
